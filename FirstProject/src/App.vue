@@ -1,50 +1,29 @@
 <script setup>
-import Header from "@/components/AppHeader.vue";
-import Footer from "@/components/AppFooter.vue";
-import Profile from "@/components/Profile.vue";
+import Cars from "./components/cars/Index.vue";
+import AppHeader from "./components/AppHeader.vue";
 import { reactive } from "vue";
 
-const data = reactive({
-  userName: "Nils",
-  lastName: "van Gestel",
-  userAge: 35,
-  parents: {
-    father: "Mario",
-    mother: "Leslie",
+const cars = reactive([
+  {
+    model: "F9",
+    brand: "Ferrari",
   },
-});
-
-const updateName = () => {
-  data.userName = "Janne";
-};
-
-const updateAge = () => {
-  data.userAge = 34;
-  alert("Data Changed from child!");
-};
-
-const updateAgeAgain = (value) => {
-  data.userAge = value;
-};
+  {
+    model: "911",
+    brand: "Porsche",
+  },
+  {
+    model: "Punta",
+    brand: "Opal",
+  },
+]);
 </script>
 
 <template>
-  <Header />
-
+  <AppHeader />
   <div class="container">
-    <Profile
-      :userName="data.userName"
-      :userLastName="data.lastName"
-      :userAge="data.userAge"
-      :userParents="data.parents"
-      @updateLastName="data.lastName = $event"
-      @updateAge="updateAge"
-      :updateAgeAgain="updateAgeAgain"
-    />
-    <button @click="updateName">Update Name</button>
+    <Cars :cars="cars" />
   </div>
-
-  <Footer />
 </template>
 
 <style scoped>
