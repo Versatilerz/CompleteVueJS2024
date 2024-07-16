@@ -1,12 +1,20 @@
 <script setup>
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
+import Header from "@/components/AppHeader.vue";
+import Footer from "@/components/AppFooter.vue";
+import Profile from "@/components/Profile.vue";
+import { ref } from "vue";
+
+const data = ref({
+  name: "Nils",
+});
 </script>
 
 <template>
   <Header />
 
-  <div class="container">Content</div>
+  <div class="container">
+    <Profile :name="data.name" lastname="Jones" />
+  </div>
 
   <Footer />
 </template>
