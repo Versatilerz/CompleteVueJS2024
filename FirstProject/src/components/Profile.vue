@@ -7,7 +7,16 @@ const props = defineProps({
     required: true,
     default: "N/A",
   },
-  userLastName: String,
+  userLastName: {
+    type: String,
+    validator(value) {
+      if (value === "van Gestel") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
   userAge: [Number, String],
   userParents: Object,
   updateAgeAgain: Function,
