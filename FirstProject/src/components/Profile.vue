@@ -2,9 +2,13 @@
 const emit = defineEmits(["updateLastName", "updateAge"]);
 
 const props = defineProps({
-  userName: String,
+  userName: {
+    type: String,
+    required: true,
+    default: "N/A",
+  },
   userLastName: String,
-  userAge: Number,
+  userAge: [Number, String],
   userParents: Object,
   updateAgeAgain: Function,
 });
