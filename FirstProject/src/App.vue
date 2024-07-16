@@ -6,15 +6,14 @@ const content = ref("hey this is content");
 </script>
 
 <template>
-  <div>
-    <Header />
-  </div>
+  <Header />
 
   <h1>{{ content }}</h1>
-  <Footer />
+
+  <Footer></Footer>
 </template>
 
-<style>
+<style scoped>
 div {
   color: red;
 }
