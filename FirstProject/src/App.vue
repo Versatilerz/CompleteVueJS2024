@@ -2,18 +2,24 @@
 import Header from "@/components/AppHeader.vue";
 import Footer from "@/components/AppFooter.vue";
 import Profile from "@/components/Profile.vue";
-import { ref } from "vue";
+import { reactive } from "vue";
 
-const data = ref({
-  name: "Nils",
+const data = reactive({
+  userName: "Nils",
+  lastName: "van Gestel",
 });
+
+const updateName = () => {
+  data.userName = "nameIsChanged";
+};
 </script>
 
 <template>
   <Header />
 
   <div class="container">
-    <Profile :name="data.name" lastname="Jones" />
+    <Profile :userName="data.userName" :userLastName="data.lastName" />
+    <button @click="updateName">Update Name</button>
   </div>
 
   <Footer />

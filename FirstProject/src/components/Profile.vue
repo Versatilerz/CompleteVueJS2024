@@ -1,7 +1,7 @@
 <script setup>
 import { defineProps } from "vue";
 
-const props = defineProps(["name", "lastname"]);
+const props = defineProps({ userName: String, userLastName: String });
 </script>
 
 <template>
@@ -9,10 +9,10 @@ const props = defineProps(["name", "lastname"]);
     <h3>User profile</h3>
     <ul>
       <li>
-        <span>Name: {{ name }}</span>
+        <span>Name: {{ userName }}</span>
       </li>
       <li>
-        <span>Last name: {{ lastname }}</span>
+        <span>Last name: {{ userLastName }}</span>
       </li>
     </ul>
   </div>
