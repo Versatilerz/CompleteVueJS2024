@@ -1,14 +1,17 @@
 <script setup>
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 import { ref } from "vue";
-const name = ref("Nils");
-
-setTimeout(() => {
-  name.value = "Janne";
-}, 3000);
+const content = ref("hey this is content");
 </script>
 
 <template>
-  <h1>{{ name }}</h1>
+  <div>
+    <Header />
+  </div>
+
+  <h1>{{ content }}</h1>
+  <Footer />
 </template>
 
 <style>
