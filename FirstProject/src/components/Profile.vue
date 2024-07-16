@@ -1,12 +1,17 @@
 <script setup>
-import { defineProps } from "vue";
+const emit = defineEmits(["updateLastName", "updateAge"]);
 
 const props = defineProps({
   userName: String,
   userLastName: String,
-  userAge: String,
+  userAge: Number,
   userParents: Object,
+  updateAgeAgain: Function,
 });
+
+const updateLastName = () => {
+  emit("updateLastName", "van Avendonk");
+};
 </script>
 
 <template>
@@ -29,6 +34,10 @@ const props = defineProps({
         {{ value }}
       </li>
     </ul>
+    <hr />
+    <button @click="updateLastName">Change from the child</button>
+    <button @click="emit('updateAge')">age + alert</button>
+    <button @click="updateAgeAgain(25)">Update again to 25</button>
   </div>
 </template>
 

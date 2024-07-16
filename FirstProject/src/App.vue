@@ -7,7 +7,7 @@ import { reactive } from "vue";
 const data = reactive({
   userName: "Nils",
   lastName: "van Gestel",
-  userAge: 25,
+  userAge: 35,
   parents: {
     father: "Mario",
     mother: "Leslie",
@@ -15,7 +15,16 @@ const data = reactive({
 });
 
 const updateName = () => {
-  data.userName = "nameIsChanged";
+  data.userName = "Janne";
+};
+
+const updateAge = () => {
+  data.userAge = 34;
+  alert("Data Changed from child!");
+};
+
+const updateAgeAgain = (value) => {
+  data.userAge = value;
 };
 </script>
 
@@ -28,6 +37,9 @@ const updateName = () => {
       :userLastName="data.lastName"
       :userAge="data.userAge"
       :userParents="data.parents"
+      @updateLastName="data.lastName = $event"
+      @updateAge="updateAge"
+      :updateAgeAgain="updateAgeAgain"
     />
     <button @click="updateName">Update Name</button>
   </div>
