@@ -1,5 +1,6 @@
 <script setup>
-const props = defineProps(["cars"]);
+import { inject } from "vue";
+const { cars, updateCar } = inject("cars");
 </script>
 
 <template>
@@ -11,4 +12,5 @@ const props = defineProps(["cars"]);
       </li>
     </ul>
   </div>
+  <button @click="updateCar">Update Car from child</button>
 </template>
