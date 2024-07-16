@@ -1,7 +1,12 @@
 <script setup>
 import { defineProps } from "vue";
 
-const props = defineProps({ userName: String, userLastName: String });
+const props = defineProps({
+  userName: String,
+  userLastName: String,
+  userAge: String,
+  userParents: Object,
+});
 </script>
 
 <template>
@@ -13,6 +18,15 @@ const props = defineProps({ userName: String, userLastName: String });
       </li>
       <li>
         <span>Last name: {{ userLastName }}</span>
+      </li>
+      <li>
+        <span>Age: {{ userAge }}</span>
+      </li>
+    </ul>
+    <h3>Parents names</h3>
+    <ul>
+      <li v-for="(value, key, index) in userParents" :key="index">
+        {{ value }}
       </li>
     </ul>
   </div>

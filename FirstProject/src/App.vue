@@ -7,6 +7,11 @@ import { reactive } from "vue";
 const data = reactive({
   userName: "Nils",
   lastName: "van Gestel",
+  userAge: 25,
+  parents: {
+    father: "Mario",
+    mother: "Leslie",
+  },
 });
 
 const updateName = () => {
@@ -18,7 +23,12 @@ const updateName = () => {
   <Header />
 
   <div class="container">
-    <Profile :userName="data.userName" :userLastName="data.lastName" />
+    <Profile
+      :userName="data.userName"
+      :userLastName="data.lastName"
+      :userAge="data.userAge"
+      :userParents="data.parents"
+    />
     <button @click="updateName">Update Name</button>
   </div>
 
