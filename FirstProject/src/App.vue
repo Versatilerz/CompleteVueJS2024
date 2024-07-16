@@ -1,20 +1,26 @@
 <script setup>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import { ref } from "vue";
-const content = ref("hey this is content");
 </script>
 
 <template>
   <Header />
 
-  <h1>{{ content }}</h1>
+  <div class="container">Content</div>
 
-  <Footer></Footer>
+  <Footer />
 </template>
 
 <style scoped>
-div {
-  color: red;
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  min-height: 87vh;
+  box-sizing: border-box;
+  padding: 20px;
 }
 </style>
