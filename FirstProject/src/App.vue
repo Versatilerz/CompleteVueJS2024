@@ -14,9 +14,10 @@ const activeComp = shallowRef(Mike);
     <button @click="activeComp = Steve">Steve</button>
     <!-- <Mike v-if="activeComp === Mike" />
     <Steve v-if="activeComp === Steve" /> -->
-    <keeo-alive include="Mike">
+    <keep-alive include="Steve, Mike">
       <component :is="activeComp" />
-    </keeo-alive>
+    </keep-alive>
+    <div id="test_test"></div>
   </div>
 </template>
 
