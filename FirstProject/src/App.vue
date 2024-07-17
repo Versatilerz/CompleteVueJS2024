@@ -2,6 +2,7 @@
 import Cars from "./components/cars/Index.vue";
 import AppHeader from "./components/AppHeader.vue";
 import { reactive, provide } from "vue";
+import Brands from "@/components/cars/Brands.vue";
 
 const cars = reactive([
   {
@@ -23,6 +24,8 @@ const updateCar = () => {
 };
 
 provide("cars", { cars, updateCar });
+
+const brands = reactive(["Mazda", "Opal", "Ford"]);
 </script>
 
 <template>
@@ -30,6 +33,12 @@ provide("cars", { cars, updateCar });
   <div class="container">
     <Cars />
     <button @click="updateCar">Click me</button>
+    <hr />
+    <Brands>
+      <ul>
+        <li v-for="(brand, index) in brands" :key="index">{{ brand }}</li>
+      </ul>
+    </Brands>
   </div>
 </template>
 
