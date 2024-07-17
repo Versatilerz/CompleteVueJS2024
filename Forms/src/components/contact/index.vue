@@ -99,6 +99,13 @@
           </div>
         </div>
 
+        <div class="error_message" v-if="errors.length">
+          <b>Oops fix the errors</b>
+          <ul>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
+          </ul>
+        </div>
+
         <button class="btn btn-primary">Submit</button>
       </div>
     </div>
@@ -142,3 +149,9 @@ const onSubmitForm = () => {
   console.log(formData);
 };
 </script>
+
+<style scoped>
+.error_message {
+  color: red;
+}
+</style>
