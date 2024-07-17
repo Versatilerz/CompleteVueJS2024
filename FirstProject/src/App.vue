@@ -2,13 +2,19 @@
 import AppHeader from "./components/AppHeader.vue";
 import Mike from "@/components/players/Mike.vue";
 import Steve from "@/components/players/Steve.vue";
+import { shallowRef } from "vue";
+
+const activeComp = shallowRef(Mike);
 </script>
 
 <template>
   <AppHeader />
   <div class="container">
-    <Mike />
-    <Steve />
+    <button @click="activeComp = Mike">Mike</button>
+    <button @click="activeComp = Steve">Steve</button>
+    <!-- <Mike v-if="activeComp === Mike" />
+    <Steve v-if="activeComp === Steve" /> -->
+    <component :is="activeComp" />
   </div>
 </template>
 
