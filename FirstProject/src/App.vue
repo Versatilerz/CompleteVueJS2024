@@ -29,7 +29,7 @@ provide("cars", { cars, updateCar });
   <AppHeader />
   <div class="container">
     <Cars />
-    <button @click="updatecar">Click me</button>
+    <button @click="updateCar">Click me</button>
   </div>
 </template>
 
