@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="onSubmitForm">
+  <form @submit.prevent="checkForm">
     <div class="row">
       <div class="col-xl-12">
         <h1>Contact us</h1>
@@ -108,6 +108,8 @@
 <script setup>
 import { reactive } from "vue";
 
+const errors = reactive([]);
+
 const formData = reactive({
   name: "",
   email: "",
@@ -117,6 +119,24 @@ const formData = reactive({
   promotions: false,
   gender: "",
 });
+
+const checkForm = () => {
+  errors.splice(0); // reset array back to []
+
+  if (!formData.name) {
+    errors.push("Sorry name is required!");
+  }
+
+  if (!formData.email) {
+    errors.push("Sorry email is required!");
+  }
+
+  if (errors.length > 0) {
+    console.log(errors);
+  } else {
+    onSubmitForm();
+  }
+};
 
 const onSubmitForm = () => {
   console.log(formData);
