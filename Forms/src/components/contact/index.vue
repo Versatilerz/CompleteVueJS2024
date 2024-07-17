@@ -53,6 +53,7 @@
               type="checkbox"
               value="Newsletter"
               id="newsletter"
+              v-model="formData.newsLetter"
             />
             <label class="form-check-label" for="newsletter">
               Newsletter
@@ -64,8 +65,9 @@
               type="checkbox"
               value="Promotions"
               id="promotions"
+              v-model="formData.promotions"
             />
-            <label class="form-check-label" for="newsletter">
+            <label class="form-check-label" for="promotions">
               Promotions
             </label>
           </div>
@@ -80,6 +82,7 @@
               id="human"
               value="human"
               name="origin"
+              v-model="formData.gender"
             />
             <label class="form-check-label" for="human"> Human </label>
           </div>
@@ -90,6 +93,7 @@
               id="alien"
               value="alien"
               name="origin"
+              v-model="formData.gender"
             />
             <label class="form-check-label" for="alien"> Alien </label>
           </div>
@@ -109,6 +113,9 @@ const formData = reactive({
   email: "",
   subject: "",
   message: "",
+  newsLetter: false,
+  promotions: false,
+  gender: "",
 });
 
 const onSubmitForm = () => {
