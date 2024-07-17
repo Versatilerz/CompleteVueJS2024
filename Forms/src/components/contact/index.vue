@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="onSubmitForm">
     <div class="row">
       <div class="col-xl-12">
         <h1>Contact us</h1>
@@ -7,22 +7,42 @@
 
         <div class="mb-3">
           <label for="name">Name</label>
-          <input type="text" id="name" class="form-control" />
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            v-model="formData.name"
+          />
         </div>
 
         <div class="mb-3">
           <label for="email">Email</label>
-          <input type="email" id="email" class="form-control" />
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            v-model="formData.email"
+          />
         </div>
 
         <div class="mb-3">
           <label for="subject">Subject</label>
-          <input type="text" id="subject" class="form-control" />
+          <input
+            type="text"
+            id="subject"
+            class="form-control"
+            v-model="formData.subject"
+          />
         </div>
 
         <div class="mb-3">
           <label for="message">Message</label>
-          <textarea class="form-control" rows="3" id="message"></textarea>
+          <textarea
+            class="form-control"
+            rows="3"
+            id="message"
+            v-model="formData.message"
+          ></textarea>
         </div>
 
         <div class="mb-3">
@@ -81,4 +101,17 @@
   </form>
 </template>
 
-<script setup></script>
+<script setup>
+import { reactive } from "vue";
+
+const formData = reactive({
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+});
+
+const onSubmitForm = () => {
+  console.log(formData);
+};
+</script>
