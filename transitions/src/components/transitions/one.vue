@@ -10,8 +10,8 @@ const data = reactive({
 </script>
 
 <template>
-  <transition
-    ><div class="p-3 mb-2 bg-success text-white" v-if="data.display">Hello</div>
+  <transition>
+    <div class="p-3 mb-2 bg-success text-white" v-if="data.display">Hello</div>
   </transition>
   <button class="btn btn-primary" @click="data.display = !data.display">
     Toggle

@@ -1,14 +1,34 @@
 <script setup>
-import { reactive } from "vue";
+import { ref } from "vue";
 
-const data = reactive({
-  display: false,
-});
+const status = ref(false);
 </script>
 
 <template>
-  <div class="p-3 mb-2 bg-success text-white" v-if="data.display">Hello</div>
-  <button class="btn btn-primary" @click="data.display = !data.display">
-    Toggle
-  </button>
+  <button class="btn btn-primary" @click="status = !status">Toggle</button>
+
+  <transition mode="out-in">
+    <div class="p-3 mb-2 bg-danger text-white" v-if="!status" key="status_off">
+      Off
+    </div>
+    <div class="p-3 mb-2 bg-success text-white" v-else="status" key="status_on">
+      On
+    </div>
+  </transition>
 </template>
+
+<style scoped>
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: 1s;
+}
+
+.v-enter-to {
+  opacity: 1;
+}
+</style>
