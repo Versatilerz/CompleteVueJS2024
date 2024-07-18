@@ -8,10 +8,18 @@ const status = ref(false);
   <button class="btn btn-primary" @click="status = !status">Toggle</button>
 
   <transition mode="out-in">
-    <div class="p-3 mb-2 bg-danger text-white" v-if="!status" key="status_off">
+    <div
+      class="p-3 mb-2 bg-danger text-white rounded"
+      v-if="!status"
+      key="status_off"
+    >
       Off
     </div>
-    <div class="p-3 mb-2 bg-success text-white" v-else="status" key="status_on">
+    <div
+      class="p-3 mb-2 bg-success text-white rounded"
+      v-else="status"
+      key="status_on"
+    >
       On
     </div>
   </transition>
