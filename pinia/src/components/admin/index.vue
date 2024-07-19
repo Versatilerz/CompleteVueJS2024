@@ -13,17 +13,13 @@
       </div>
       <br /> -->
 
-      <button
-        type="button"
-        class="btn btn-primary me-3"
-        @click="store.counter++"
-      >
+      <button type="button" class="btn btn-primary me-3" @click="store.add">
         +
       </button>
       <button
         type="button"
         class="btn btn-outline-secondary"
-        @click="store.counter--"
+        @click="store.subtract"
       >
         -
       </button>
@@ -34,6 +30,20 @@
       <button type="button" class="btn btn-primary" @click="patchState">
         patch state
       </button>
+
+      <hr />
+      <div>
+        <button
+          type="button"
+          class="btn btn-primary me-3"
+          @click="store.getPosts(10)"
+        >
+          Get posts
+        </button>
+        <ul>
+          <li v-for="post in store.posts" :key="post.id">{{ post.title }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>

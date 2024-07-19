@@ -7,14 +7,14 @@
         <button
           type="button"
           class="btn btn-primary btn-lg px-4 gap-3"
-          @click="store.counter++"
+          @click="store.add"
         >
           +
         </button>
         <button
           type="button"
           class="btn btn-outline-secondary btn-lg px-4"
-          @click="store.counter--"
+          @click="store.subtract"
         >
           -
         </button>
