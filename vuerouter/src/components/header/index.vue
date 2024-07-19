@@ -20,7 +20,9 @@
           <RouterLink to="/articles" class="nav-link">Articles</RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink to="/contact" class="nav-link">Contact</RouterLink>
+          <RouterLink :to="{ name: 'contactRoute' }" class="nav-link"
+            >Contact</RouterLink
+          >
         </li>
       </ul>
     </header>

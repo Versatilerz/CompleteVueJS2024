@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/articles">Go back to articles</router-link>
+  <router-link to="/articles/3">Go back to articles</router-link>
 
   <div v-if="Object.keys(article).length !== 0">
     <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
@@ -48,7 +48,7 @@
 <script setup>
 import axios from "axios";
 import { onMounted, ref, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, onBeforeRouteUpdate } from "vue-router";
 
 const props = defineProps(["crazy"]);
 console.log(props.crazy);
@@ -72,10 +72,13 @@ onMounted(() => {
 });
 
 // watch for the route to change.. then take the newValue and post that into loadArticleData
-watch(
-  () => route.params.articleId,
-  async (newId, oldId) => {
-    loadArticle(newId);
-  }
-);
+// watch(
+//   () => route.params.articleId,
+//   async (newId, oldId) => {
+//     loadArticle(newId);
+//   }
+// );
+onBeforeRouteUpdate((to, from) => {
+  loadArticle(to.params.articleId);
+});
 </script>
