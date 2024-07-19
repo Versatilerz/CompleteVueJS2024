@@ -9,6 +9,11 @@
             {{ note.description }}
           </p>
         </div>
+        <div class="card-footer">
+          <RouterLink :to="`/admin/update_article/${notes.id}`"
+            >Update Note</RouterLink
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -18,6 +23,7 @@
 import { DB } from "@/firebase/configs";
 import { collection, getDocs } from "firebase/firestore";
 import { ref } from "vue";
+import { RouterLink } from "vue-router";
 
 const notes = ref([]);
 
