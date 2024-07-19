@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/articles/2">Go to another article</router-link>
+  <router-link to="/articles">Go back to articles</router-link>
 
   <div v-if="Object.keys(article).length !== 0">
     <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
@@ -49,6 +49,9 @@
 import axios from "axios";
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
+
+const props = defineProps(["crazy"]);
+console.log(props.crazy);
 
 const route = useRoute();
 const article = ref({});
