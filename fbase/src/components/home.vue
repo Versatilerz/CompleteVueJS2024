@@ -10,7 +10,7 @@
           </p>
         </div>
         <div class="card-footer">
-          <RouterLink :to="`/admin/update_article/${notes.id}`"
+          <RouterLink :to="`/admin/update_article/${note.id}`"
             >Update Note</RouterLink
           >
         </div>

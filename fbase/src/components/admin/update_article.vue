@@ -31,12 +31,40 @@
 <script setup>
 import { reactive } from "vue";
 import { DB } from "@/firebase/configs";
-import { collection } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useRoute, useRouter } from "vue-router";
+
+const route = useRoute();
+const router = useRouter();
+// console.log(route.params.id);
 
 const formData = reactive({
   title: "",
   description: "",
 });
 
-const submitForm = async () => {};
+//get document by ID
+const docRef = doc(DB, "notes", route.params.id);
+getDoc(docRef)
+  .then((snapshot) => {
+    if (!snapshot.exists()) {
+      throw new Error("Could not find this note");
+    }
+    // console.log(snapshot.data());
+    formData.title = snapshot.data().title;
+    formData.description = snapshot.data().description;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+const submitForm = async () => {
+  try {
+    const docRef = doc(DB, "notes", route.params.id);
+    await updateDoc(docRef, { ...formData });
+    router.push("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
 </script>
