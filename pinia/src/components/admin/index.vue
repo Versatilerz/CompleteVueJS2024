@@ -4,25 +4,51 @@
     <hr />
     <div class="col-sm-5">
       <p>
-        <strong> Change count:0 </strong>
+        <strong> Change count:{{ store.counter }} </strong>
       </p>
 
-      <div>
+      <!-- <div>
         <label class="form-label">By how much</label>
         <input type="number" class="form-control" v-model="data.amount" />
       </div>
-      <br />
+      <br /> -->
 
-      <button type="button" class="btn btn-primary me-3">+</button>
-      <button type="button" class="btn btn-outline-secondary">-</button>
+      <button
+        type="button"
+        class="btn btn-primary me-3"
+        @click="store.counter++"
+      >
+        +
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        @click="store.counter++"
+      >
+        -
+      </button>
+
+      <hr />
+      <p>{{ store.car.brand }}</p>
+      <p>{{ store.car.color }}</p>
+      <button type="button" class="btn btn-primary" @click="patchState">
+        patch state
+      </button>
     </div>
   </div>
 </template>
 
 <script setup>
-  import { reactive } from 'vue'
+import { useCounterStore } from "@/stores/counter";
+const store = useCounterStore();
 
-  const data = reactive({
-    amount:1
-  })
+const patchState = () => {
+  store.$patch({
+    counter: 100,
+    car: {
+      brand: "Ford",
+      color: "red",
+    },
+  });
+};
 </script>

@@ -4,10 +4,18 @@
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">{{ store.counter }}</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
+        <button
+          type="button"
+          class="btn btn-primary btn-lg px-4 gap-3"
+          @click="store.counter++"
+        >
           +
         </button>
-        <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+        <button
+          type="button"
+          class="btn btn-outline-secondary btn-lg px-4"
+          @click="store.counter--"
+        >
           -
         </button>
       </div>
