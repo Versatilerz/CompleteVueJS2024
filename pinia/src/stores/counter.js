@@ -49,6 +49,7 @@ export const useCounterStore = defineStore("counter", {
           `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`
         );
         this.posts = response.data;
+        return response.data;
       } catch (error) {
         console.log(error);
       }

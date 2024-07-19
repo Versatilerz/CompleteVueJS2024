@@ -61,4 +61,15 @@ const patchState = () => {
     },
   });
 };
+
+// subscribe is removed when the component gets deleted.
+// to keep the subscribtion alove you set the second object {detachted: true}
+
+store.$subscribe(
+  (mutation, state) => {
+    console.log(state);
+    console.log(mutation.events.oldValue);
+  },
+  { detached: true }
+);
 </script>
