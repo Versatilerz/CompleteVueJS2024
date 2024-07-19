@@ -4,7 +4,7 @@
     <hr />
     <div class="col-sm-5">
       <p>
-        <strong> Change count:{{ store.counter }} </strong>
+        <strong> Change count:{{ store.getCount }} </strong>
       </p>
 
       <!-- <div>
@@ -23,7 +23,7 @@
       <button
         type="button"
         class="btn btn-outline-secondary"
-        @click="store.counter++"
+        @click="store.counter--"
       >
         -
       </button>
