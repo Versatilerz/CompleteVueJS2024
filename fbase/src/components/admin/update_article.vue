@@ -23,11 +23,9 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>
-        <hr />
-        <button @click.prevent="deleteNote" class="btn btn-danger">
-          Delete
-        </button>
       </form>
+      <hr />
+      <button @click.prevent="deleteNote" class="btn btn-danger">Delete</button>
     </div>
   </div>
 </template>

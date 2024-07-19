@@ -1,10 +1,25 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import Header from './components/header.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import Header from "./components/header.vue";
 
-const app = createApp(App)
+//firebase
+import { auth } from "./firebase/configs";
+import { onAuthStateChanged } from "firebase/auth";
 
-app.component('app-header', Header)
-app.use(router)
-app.mount('#app')
+let app;
+
+onAuthStateChanged(auth, () => {
+  if (!app) {
+    app = createApp(App);
+    app.component("app-header", Header);
+    app.use(router);
+    app.mount("#app");
+  }
+});
+
+// const app = createApp(App);
+
+// app.component("app-header", Header);
+// app.use(router);
+// app.mount("#app");
