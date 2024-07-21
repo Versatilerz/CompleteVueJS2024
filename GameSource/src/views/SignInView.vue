@@ -61,6 +61,10 @@ import { Field, Form } from "vee-validate";
 import * as yup from "yup";
 import { ref } from "vue";
 
+//auth store
+import { useUserStore } from "@/stores/user";
+const userStore = useUserStore();
+
 const type = ref(false);
 
 const formSchema = yup.object({
@@ -69,6 +73,7 @@ const formSchema = yup.object({
 });
 
 const onSubmit = (values, { resetForm }) => {
-  console.log(values);
+  //   userStore.register(values);
+  //   console.log(values);
 };
 </script>
