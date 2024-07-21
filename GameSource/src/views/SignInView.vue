@@ -2,7 +2,7 @@
   <div class="signin_container">
     <!-- loader -->
     <div class="text-center" v-show="userStore.isLoading">
-      <v-progress-circular />
+      <v-progress-circular indeterminate color="primary" />
     </div>
 
     <Form
@@ -82,8 +82,10 @@ const formSchema = yup.object({
 const onSubmit = (values, { resetForm }) => {
   if (type.value) {
     //register
+    userStore.register(values);
   } else {
     //signin
+    userStore.signIn(values);
   }
 };
 </script>
