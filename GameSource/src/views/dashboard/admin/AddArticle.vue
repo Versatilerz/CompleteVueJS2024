@@ -1,7 +1,17 @@
 <template>
   <h1>Add article</h1>
   <hr />
-  <Form class="mb-5" @submit="onSubmit" :validation-schema="articlesSchema">
+
+  <div class="text-center m-3" v-show="isLoading">
+    <v-progress-circular indeterminate color="primary" />
+  </div>
+
+  <Form
+    class="mb-5"
+    @submit="onSubmit"
+    :validation-schema="articlesSchema"
+    v-show="!isLoading"
+  >
     <!-- name of the game -->
     <div class="mb-4">
       <Field name="game" v-slot="{ field, errors, errorMessage }">
@@ -114,16 +124,45 @@ import { Field, Form } from "vee-validate";
 import articlesSchema from "./schema";
 import wysiwyg from "@/utils/wysiwyg.vue";
 import { useArticleStore } from "@/stores/articles";
+import { useToast } from "vue-toast-notification";
 
 const ratingArray = [0, 1, 2, 3, 4, 5];
 const veditor = ref(" ");
+const isLoading = ref(false);
+const $toast = useToast();
+
 const updateEditor = (value) => {
   veditor.value = value;
 };
 
 const articleStore = useArticleStore();
 
-const onSubmit = (values, { resetForm }) => {
-  console.log(values);
+const onSubmit = async (values) => {
+  isLoading.value = true;
+
+  try {
+    await articleStore.addArticle(values);
+    $toast.success("New article created");
+  } catch (error) {
+    $toast.error(error.message);
+    console.log(error);
+  } finally {
+    isLoading.value = false;
+  }
 };
+
+// function onSubmit(values) {
+//   isLoading.value = true;
+//   articleStore
+//     .addArticle(values)
+//     .then(() => {
+//       $toast.success("New article created");
+//     })
+//     .catch((error) => {
+//       $toast.error(error.message);
+//     })
+//     .finally(() => {
+//       isLoading.value = false;
+//     });
+// }
 </script>

@@ -26,7 +26,11 @@ export const useUserStore = defineStore("user", {
     user: default_user,
     auth: false,
   }),
-  getters: {},
+  getters: {
+    getUserData(state) {
+      return state.user;
+    },
+  },
   actions: {
     setUser(user) {
       this.user = { ...this.user, ...user };
