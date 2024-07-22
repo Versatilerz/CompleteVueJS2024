@@ -10,6 +10,7 @@ import {
   getDoc,
   serverTimestamp,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 let articlesCol = collection(db, "articles");
@@ -54,10 +55,20 @@ export const useArticleStore = defineStore("article", {
         if (!docRef.exists) {
           throw new Error("Could not find article");
         }
-        console.log(docRef.data());
         return docRef.data();
       } catch (error) {
         router.push({ name: "404" });
+      }
+    },
+    async updateArticle(id, formData) {
+      try {
+        const docRef = doc(db, "articles", id);
+        await updateDoc(docRef, {
+          ...formData,
+        });
+      } catch (error) {
+        console.log(error);
+        throw new Error(error);
       }
     },
   },

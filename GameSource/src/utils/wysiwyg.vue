@@ -39,7 +39,9 @@
 <script setup>
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
+import { watch } from "vue";
 
+const props = defineProps(["content"]); //this is for edit
 const emit = defineEmits(["update"]);
 
 const editor = new Editor({
@@ -49,4 +51,19 @@ const editor = new Editor({
     emit("update", editor.getHTML());
   },
 });
+
+watch(
+  () => props.content,
+  () => {
+    loadContent();
+  }
+);
+
+const loadContent = () => {
+  if (props.content) {
+    editor.commands.setContent(props.content);
+  }
+};
+
+loadContent();
 </script>

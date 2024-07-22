@@ -131,7 +131,7 @@
       </Field>
     </div>
 
-    <v-btn type="submit"> add article </v-btn>
+    <v-btn type="submit"> Edit article </v-btn>
   </Form>
 </template>
 
@@ -158,15 +158,27 @@ const updateEditor = (value) => {
   veditor.value = value;
 };
 
-const onSubmit = async (values) => {};
-//get article by ID and populate
+const onSubmit = async (values, { resetForm }) => {
+  isLoading.value = true;
 
+  try {
+    await articleStore.updateArticle(route.params.id, values);
+    $toast.success("Article updated");
+  } catch (error) {
+    $toast.error(error.message);
+    console.log(error);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+//get article by ID and populate
 const onFirstLoad = async (id) => {
   try {
     const response = await articleStore.getArticleById(id);
     article.value = { ...response };
   } catch (error) {
-    console.log(error);
+    $toast.error(error.message);
   } finally {
     isLoading.value = false;
   }
