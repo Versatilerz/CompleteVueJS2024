@@ -2,16 +2,11 @@
   <h1>Add article</h1>
   <hr />
 
-  <div class="text-center m-3" v-show="isLoading">
+  <!-- <div class="text-center m-3" v-show="isLoading">
     <v-progress-circular indeterminate color="primary" />
-  </div>
+  </div> -->
 
-  <Form
-    class="mb-5"
-    @submit="onSubmit"
-    :validation-schema="articlesSchema"
-    v-show="!isLoading"
-  >
+  <Form class="mb-5" @submit="onSubmit" :validation-schema="articlesSchema">
     <!-- name of the game -->
     <div class="mb-4">
       <Field
@@ -131,7 +126,9 @@
       </Field>
     </div>
 
-    <v-btn type="submit"> Edit article </v-btn>
+    <v-btn type="submit" :disabled="isLoading" :loading="isLoading">
+      Edit article
+    </v-btn>
   </Form>
 </template>
 
@@ -176,6 +173,7 @@ const onSubmit = async (values, { resetForm }) => {
 const onFirstLoad = async (id) => {
   try {
     const response = await articleStore.getArticleById(id);
+    updateEditor(response.editor);
     article.value = { ...response };
   } catch (error) {
     $toast.error(error.message);
