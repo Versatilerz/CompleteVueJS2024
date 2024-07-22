@@ -4,7 +4,13 @@ import router from "@/router";
 
 //firebase
 import { db } from "@/utils/firebase";
-import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 
 let articlesCol = collection(db, "articles");
 
@@ -40,6 +46,18 @@ export const useArticleStore = defineStore("article", {
       } catch (error) {
         console.log(error);
         throw new Error(error);
+      }
+    },
+    async getArticleById(id) {
+      try {
+        const docRef = await getDoc(doc(db, "articles", id));
+        if (!docRef.exists) {
+          throw new Error("Could not find article");
+        }
+        console.log(docRef.data());
+        return docRef.data();
+      } catch (error) {
+        router.push({ name: "404" });
       }
     },
   },

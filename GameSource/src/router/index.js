@@ -4,6 +4,7 @@ import { isAuth, isLoggedIn } from "@/composables/auth";
 //none logged in routes
 import HomeView from "../views/HomeView.vue";
 import SignInView from "@/views/SignInView.vue";
+import NotFound from "@/components/404.vue";
 
 //dashboard routes afther login
 import DashboardView from "@/views/dashboard/DashboardView.vue";
@@ -39,6 +40,7 @@ const router = createRouter({
         },
       ],
     },
+    { path: "/:notFound(.*)*", component: NotFound, name: "404" },
   ],
 });
 

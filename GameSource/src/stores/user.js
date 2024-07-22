@@ -39,7 +39,6 @@ export const useUserStore = defineStore("user", {
     async autoSignIn(uid) {
       try {
         const userData = await this.getUserProfile(uid);
-        console.log(userData);
 
         //update local state if we find a user
         this.setUser(userData);
