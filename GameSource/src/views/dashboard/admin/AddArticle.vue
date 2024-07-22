@@ -113,12 +113,15 @@ import { ref } from "vue";
 import { Field, Form } from "vee-validate";
 import articlesSchema from "./schema";
 import wysiwyg from "@/utils/wysiwyg.vue";
+import { useArticleStore } from "@/stores/articles";
 
 const ratingArray = [0, 1, 2, 3, 4, 5];
 const veditor = ref(" ");
 const updateEditor = (value) => {
   veditor.value = value;
 };
+
+const articleStore = useArticleStore();
 
 const onSubmit = (values, { resetForm }) => {
   console.log(values);
