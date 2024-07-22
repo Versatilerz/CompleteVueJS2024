@@ -50,6 +50,19 @@
     </div>
 
     <!-- what you see is what you get?? -->
+    <div class="mb-4">
+      <wysiwyg @update="updateEditor" />
+      <Field
+        name="editor"
+        v-model="veditor"
+        v-slot="{ field, errors, errorMessage }"
+      >
+        <input type="hidden" v-bind="field" id="veditor" />
+        <div class="input_alert" v-if="errors.length > 0">
+          {{ errorMessage }}
+        </div>
+      </Field>
+    </div>
 
     <!-- raiting of the game -->
     <div class="mb-4">
@@ -99,8 +112,13 @@
 import { ref } from "vue";
 import { Field, Form } from "vee-validate";
 import articlesSchema from "./schema";
+import wysiwyg from "@/utils/wysiwyg.vue";
 
 const ratingArray = [0, 1, 2, 3, 4, 5];
+const veditor = ref(" ");
+const updateEditor = (value) => {
+  veditor.value = value;
+};
 
 const onSubmit = (values, { resetForm }) => {
   console.log(values);

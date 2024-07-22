@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tiptap/pm": "^2.5.4",
+    "@tiptap/starter-kit": "^2.5.4",
+    "@tiptap/vue-3": "^2.5.4",
     "firebase": "^10.12.4",
     "pinia": "^2.1.7",
     "vee-validate": "^4.13.2",

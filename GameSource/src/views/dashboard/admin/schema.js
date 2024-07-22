@@ -12,10 +12,8 @@ const articlesSchema = {
     .required("Excerpt is required")
     .min(50, "Atleast 50 characters")
     .max(400, "Max 400 characters"),
-  //   editor: yup
-  //     .string()
-  //     .required("Expert is required")
-  //     .min(100, "Atleast 100 characters"),
+  editor: yup.string().required("Expert is required"),
+  // .min(100, "Atleast 100 characters"),
   rating: yup
     .string()
     .required("Rating is required")
