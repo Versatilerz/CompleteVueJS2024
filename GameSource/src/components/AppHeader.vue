@@ -6,12 +6,12 @@
       </div>
       <div>
         <ul>
-          <li>
+          <li v-if="!userStore.auth">
             <router-Link :to="{ name: 'signin' }"> Sign in </router-Link>
           </li>
           <span>
-            <li>
-              <span> Logout </span>
+            <li v-if="userStore.auth">
+              <span @click="userStore.signOut"> Logout </span>
             </li>
             <li>
               <router-link :to="{ name: 'dashboard' }"> Dashboard </router-link>
@@ -22,3 +22,9 @@
     </div>
   </header>
 </template>
+
+<script setup>
+import { useUserStore } from "@/stores/user";
+
+const userStore = useUserStore();
+</script>

@@ -112,5 +112,11 @@ export const useUserStore = defineStore("user", {
         this.isLoading = false;
       }
     },
+    async signOut() {
+      await signOut(auth);
+      this.user = default_user;
+      this.auth = false;
+      router.push("/");
+    },
   },
 });
