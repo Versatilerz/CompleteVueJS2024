@@ -68,8 +68,13 @@ import { Field, Form } from "vee-validate";
 import * as yup from "yup";
 import { ref } from "vue";
 
+//TOASTS
+import { useToast } from "vue-toast-notification";
+const $toast = useToast();
+
 //auth store
 import { useUserStore } from "@/stores/user";
+import { errorMessages } from "vue/compiler-sfc";
 const userStore = useUserStore();
 
 const type = ref(false);
@@ -88,4 +93,16 @@ const onSubmit = (values, { resetForm }) => {
     userStore.signIn(values);
   }
 };
+
+//subscribe to an error
+userStore.$onAction(({ name, after, onError }) => {
+  if (name === "register" || name === "signIn") {
+    after(() => {
+      $toast.success("Succesfully logged in");
+    });
+    onError((error) => {
+      $toast.error(error.message);
+    });
+  }
+});
 </script>

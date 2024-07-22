@@ -10,6 +10,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { getDoc, doc, setDoc, updateDoc } from "firebase/firestore";
+import errorCodes from "@/utils/fbcodes";
 
 const default_user = {
   uid: null,
@@ -63,7 +64,7 @@ export const useUserStore = defineStore("user", {
         //redirect to dashboard
         router.push({ name: "dashboard" });
       } catch (error) {
-        throw new Error(error.code);
+        throw new Error(errorCodes(error.code));
       } finally {
         this.isLoading = false;
       }
@@ -94,7 +95,7 @@ export const useUserStore = defineStore("user", {
         //redirect to dashboard
         router.push({ name: "dashboard" });
       } catch (error) {
-        throw new Error(error.code);
+        throw new Error(errorCodes(error.code));
       } finally {
         this.isLoading = false;
       }
