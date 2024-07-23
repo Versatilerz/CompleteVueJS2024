@@ -1,11 +1,13 @@
 import { defineStore } from "pinia";
 import { useUserStore } from "./user";
 import router from "@/router";
+import { useToast } from "vue-toast-notification";
 
 //firebase
 import { db } from "@/utils/firebase";
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -19,6 +21,7 @@ import {
 } from "firebase/firestore";
 
 let articlesCol = collection(db, "articles");
+const $toast = useToast();
 
 export const useArticleStore = defineStore("article", {
   state: () => ({
@@ -121,6 +124,21 @@ export const useArticleStore = defineStore("article", {
           this.adminLastVisible = lastVisible;
         }
       } catch (error) {
+        throw new Error(error);
+      }
+    },
+    async removeById(id) {
+      try {
+        await deleteDoc(doc(db, "articles", id));
+
+        const newList = this.adminArticles.filter((article) => {
+          return article.id != id;
+        });
+
+        this.adminArticles = newList;
+        $toast.success("Deleted the article");
+      } catch (error) {
+        $toast.error("Could not delete article...");
         throw new Error(error);
       }
     },

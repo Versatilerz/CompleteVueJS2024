@@ -36,7 +36,13 @@
             >
           </td>
           <td>
-            <v-btn variant="outlined" color="red" size="small">Remove</v-btn>
+            <v-btn
+              variant="outlined"
+              color="red"
+              size="small"
+              @click="removeHandler(article.id)"
+              >Remove</v-btn
+            >
           </td>
         </tr>
       </tbody>
@@ -61,6 +67,14 @@ const route = useRoute();
 const articleStore = useArticleStore();
 const isLoading = ref(false);
 const btnLoad = ref(false);
+
+//remove by id
+const removeHandler = (id) => {
+  isLoading.value = true;
+  articleStore.removeById(id).finally(() => {
+    isLoading.value = false;
+  });
+};
 
 //load more articles
 const loadMoreArticles = () => {
