@@ -14,6 +14,7 @@ import {
   query,
   serverTimestamp,
   setDoc,
+  startAfter,
   updateDoc,
 } from "firebase/firestore";
 
@@ -93,6 +94,32 @@ export const useArticleStore = defineStore("article", {
         // update admin articles
         this.adminArticles = articles;
         this.adminLastVisible = lastVisible;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    async adminGetMoreArticles(docLimit) {
+      try {
+        if (this.adminLastVisible) {
+          let oldArticles = this.adminArticles;
+
+          const q = query(
+            articlesCol,
+            orderBy("timestamp", "desc"),
+            startAfter(this.adminLastVisible),
+            limit(docLimit)
+          );
+
+          const response = await getDocs(q);
+          const lastVisible = response.docs[response.docs.length - 1];
+          const newArticles = response.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+
+          this.adminArticles = [...oldArticles, ...newArticles];
+          this.adminLastVisible = lastVisible;
+        }
       } catch (error) {
         throw new Error(error);
       }
