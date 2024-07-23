@@ -8,6 +8,10 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
   serverTimestamp,
   setDoc,
   updateDoc,
@@ -68,6 +72,28 @@ export const useArticleStore = defineStore("article", {
         });
       } catch (error) {
         console.log(error);
+        throw new Error(error);
+      }
+    },
+    async adminGetArticles(docLimit) {
+      try {
+        const q = query(
+          articlesCol,
+          orderBy("timestamp", "desc"),
+          limit(docLimit)
+        );
+        const response = await getDocs(q);
+
+        const lastVisible = response.docs[response.docs.length - 1];
+        const articles = response.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        // update admin articles
+        this.adminArticles = articles;
+        this.adminLastVisible = lastVisible;
+      } catch (error) {
         throw new Error(error);
       }
     },
