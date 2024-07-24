@@ -9,7 +9,7 @@
   >
     <div class="mb-4">
       <Field
-        name="firstname"
+        name="firstName"
         v-model="firstName"
         v-slot="{ field, errors, errorMessage }"
       >
@@ -27,7 +27,7 @@
     </div>
     <div class="mb-4">
       <Field
-        name="lastname"
+        name="lastName"
         v-model="lastName"
         v-slot="{ field, errors, errorMessage }"
       >
@@ -53,9 +53,10 @@
 import { Field, Form } from "vee-validate";
 import { updateProfile } from "@/composables/user";
 
-const { isLoading, firstName, lastName, formSchema } = updateProfile();
+const { isLoading, onSubmit, firstName, lastName, formSchema } =
+  updateProfile();
 
-const onSubmit = (value) => {
-  console.log(value);
-};
+// const onSubmit = (value) => {
+//   console.log(value);
+// };
 </script>

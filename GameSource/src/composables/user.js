@@ -11,18 +11,21 @@ export const updateProfile = () => {
 
   const isLoading = ref(false);
   const formSchema = yup.object({
-    firstname: yup
+    firstName: yup
       .string()
       .required("First name is required")
       .max(100, "Your name is to long"),
-    lastname: yup
+    lastName: yup
       .string()
       .required("Last name is required")
       .max(100, "Your name is to long"),
   });
 
-  const onSubmit = (value) => {
-    console.log(value);
+  const onSubmit = (values, { resetForm }) => {
+    isLoading.value = true;
+    userStore.updateProfile(values).finally(() => {
+      isLoading.value = false;
+    });
   };
 
   return { isLoading, onSubmit, firstName, lastName, formSchema };

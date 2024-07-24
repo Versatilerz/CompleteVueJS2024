@@ -11,6 +11,8 @@ import {
 } from "firebase/auth";
 import { getDoc, doc, setDoc, updateDoc } from "firebase/firestore";
 import errorCodes from "@/utils/fbcodes";
+import { useToast } from "vue-toast-notification";
+const $toast = useToast();
 
 const default_user = {
   uid: null,
@@ -30,11 +32,30 @@ export const useUserStore = defineStore("user", {
     getUserData(state) {
       return state.user;
     },
+    getUserId(state) {
+      return state.user.uid;
+    },
   },
   actions: {
     setUser(user) {
       this.user = { ...this.user, ...user };
       this.auth = true;
+    },
+    async updateProfile(formData) {
+      try {
+        const userRef = doc(db, "users", this.getUserId);
+
+        await updateDoc(userRef, {
+          ...formData,
+        });
+        console.log(formData);
+        this.setUser(formData);
+        $toast.success("Succesfully updated profile");
+        return true;
+      } catch (error) {
+        console.log("test");
+        $toast.error(error.message);
+      }
     },
     async autoSignIn(uid) {
       try {
