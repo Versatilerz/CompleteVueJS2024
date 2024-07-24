@@ -10,6 +10,9 @@ import router from "./router";
 import ToastPlugin from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-bootstrap.css";
 
+//masonry
+import { VueMasonryPlugin } from "vue-masonry";
+
 // Vuetify
 import "vuetify/styles";
 import "@mdi/font/css/materialdesignicons.css"; // Ensure you are using css-loader
@@ -33,6 +36,7 @@ onAuthStateChanged(auth, () => {
     app.use(router);
     app.use(vuetify);
     app.use(ToastPlugin);
+    app.use(VueMasonryPlugin);
 
     app.mount("#app");
   }
