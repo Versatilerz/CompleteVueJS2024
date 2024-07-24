@@ -13,6 +13,6 @@ import Featured from "./Featured.vue";
 const articleStore = useArticleStore();
 
 if (!articleStore.homeArticles) {
-  articleStore.getArticles(8);
+  articleStore.getArticles(10);
 }
 </script>
