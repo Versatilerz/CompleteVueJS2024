@@ -84,7 +84,7 @@ header ul li a {
 }
 header ul li a:hover {
   text-decoration: none !important;
-  color: var(--grape);
+  color: white;
 }
 header ul li span {
   cursor: pointer;
